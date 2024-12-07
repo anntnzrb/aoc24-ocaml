@@ -27,6 +27,8 @@
         };
 
         packages = with pkgs; [
+          ocamlPackages.base
+
           just
           config.treefmt.build.wrapper
         ];

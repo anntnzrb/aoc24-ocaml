@@ -1,4 +1,5 @@
 (library
  (name aoc24)
  (public_name aoc24)
- (modules util day01 day02))
+ (modules util day01 day02)
+ (libraries base))

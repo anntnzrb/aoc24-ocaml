@@ -11,6 +11,7 @@ bug-reports: "https://github.com/anntnzrb/aoc24-ocaml/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.16"}
+  "base"
   "odoc" {with-doc}
 ]
 build: [
