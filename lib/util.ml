@@ -1,3 +1,5 @@
+open Base
+
 module IO = struct
   let read_file_as_string (filename : string) : string =
     try In_channel.with_open_text filename In_channel.input_all
@@ -11,22 +13,24 @@ module IO = struct
       read_file_as_string filename
 end
 
-module String = struct
-  let mk_lines (s : string) : string list =
-    s |> String.trim |> String.split_on_char '\n'
-end
-
 module Int = struct
   let distance (x : int) (y : int) : int = Int.abs (x - y)
 end
 
 module List = struct
-  let is_pairwise_monotonic (cmp : 'a -> 'a -> bool) (xs : 'a list) : bool =
-    let rec aux = function
-      | [] | [ _ ] -> true
-      | x :: y :: rest -> cmp x y && aux (y :: rest)
-    in
-    aux xs
+  type 'a t = 'a list
 
-  let sum (xs : int list) : int = List.fold_left ( + ) 0 xs
+  let rec zip xs ys =
+    match (xs, ys) with
+    | x :: xs_tl, y :: ys_tl -> (x, y) :: zip xs_tl ys_tl
+    | _ -> []
+
+  module Int = struct
+    type t = int list
+
+    let sum xs = List.fold xs ~init:0 ~f:( + )
+    let is_increasing xs = List.is_sorted xs ~compare:Base.Int.compare
+    let is_decreasing xs = List.is_sorted xs ~compare:(Fn.flip Base.Int.compare)
+    let is_increasing_or_decreasing xs = is_increasing xs || is_decreasing xs
+  end
 end

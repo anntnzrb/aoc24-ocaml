@@ -1,27 +1,21 @@
-(** Transposes a 2x2 matrix. No folding, just tuples and [List.split] *)
-let transpose2x2 matrix =
-  matrix
-  |> List.map (function
-       | [ a; b ] -> (a, b)
-       | _ -> failwith "Each sublist must contain exactly 2 elements")
-  |> List.split
-  |> fun (a, b) -> [ a; b ]
+open Base
 
 (** The distance of two (2) lists is the absolute value of each element's
     difference *)
-let calc_distance xs ys = List.map2 Util.Int.distance xs ys |> Util.List.sum
+let calc_distance xs ys =
+  List.map2_exn xs ys ~f:Util.Int.distance |> Util.List.Int.sum
 
 let parse_line line =
-  line |> String.split_on_char ' '
-  |> List.filter (( <> ) "")
-  |> List.map int_of_string
+  line |> String.split ~on:' '
+  |> List.filter ~f:(fun s -> not (String.is_empty s))
+  |> List.map ~f:Int.of_string
 
-let input = Util.IO.read_input_day 1 ~sample:true
+let input = Util.IO.read_input_day 1 ~sample:false
 
-let part1 : string =
-  input |> Util.String.mk_lines |> List.map parse_line |> transpose2x2
-  |> List.map @@ List.sort Int.compare
+let part1 =
+  input |> String.split_lines |> List.map ~f:parse_line |> List.transpose_exn
+  |> List.map ~f:(List.sort ~compare:Int.compare)
   |> ( function
   | [ xs; ys ] -> calc_distance xs ys
   | _ -> failwith "Could not calculate distance" )
-  |> string_of_int
+  |> Int.to_string
