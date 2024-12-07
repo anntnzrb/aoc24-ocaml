@@ -19,10 +19,11 @@ module Report = struct
     && Level.check_safety_all report
 end
 
-let part1 =
-  let input : string = Util.IO.read_input_day 2 ~sample:false in
+let parse_line (line : string) =
+  line |> String.split_on_char ' ' |> List.map int_of_string
 
-  let open List in
-  let parse_line line = line |> String.split_on_char ' ' |> map int_of_string in
-  input |> Util.String.mk_lines |> map parse_line |> filter Report.is_safe
-  |> length |> string_of_int
+let input : string = Util.IO.read_input_day 2 ~sample:false
+
+let part1 =
+  input |> Util.String.mk_lines |> List.map parse_line
+  |> List.filter Report.is_safe |> List.length |> string_of_int
