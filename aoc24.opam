@@ -5,9 +5,9 @@ description: "Advent of Code 2024, in OCaml."
 maintainer: ["anntnzrb"]
 authors: ["anntnzrb"]
 license: "COPYING"
-homepage: "https://github.com/anntnzrb/aoc24-ml"
-doc: "https://github.com/anntnzrb/aoc24-ml"
-bug-reports: "https://github.com/anntnzrb/aoc24-ml/issues"
+homepage: "https://github.com/anntnzrb/aoc24-ocaml"
+doc: "https://github.com/anntnzrb/aoc24-ocaml"
+bug-reports: "https://github.com/anntnzrb/aoc24-ocaml/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.16"}
@@ -27,4 +27,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/anntnzrb/aoc24-ml.git"
+dev-repo: "git+https://github.com/anntnzrb/aoc24-ocaml.git"

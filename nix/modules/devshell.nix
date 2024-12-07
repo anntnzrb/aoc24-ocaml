@@ -13,7 +13,7 @@
     }:
     {
       devenv.shells.default = {
-        name = "annt-devenv-template-shell";
+        name = "aoc24-ocaml-shell";
 
         devenv.root =
           let

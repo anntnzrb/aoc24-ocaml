@@ -5,7 +5,7 @@
 (generate_opam_files true)
 
 (source
- (github anntnzrb/aoc24-ml))
+ (github anntnzrb/aoc24-ocaml))
 
 (authors "anntnzrb")
 
@@ -13,7 +13,7 @@
 
 (license COPYING)
 
-(documentation https://github.com/anntnzrb/aoc24-ml)
+(documentation https://github.com/anntnzrb/aoc24-ocaml)
 
 (package
  (name aoc24)
