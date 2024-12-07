@@ -1,18 +1,19 @@
 module IO = struct
-  let read_input filename =
+  let read_file_as_string (filename : string) : string =
     try In_channel.with_open_text filename In_channel.input_all
     with Sys_error msg -> failwith @@ "Failed to read from file: " ^ msg
 
-  let read_input_day day ~sample =
+  let read_input_day (day : int) ~(sample : bool) : string =
     if day < 1 || day > 25 then failwith "Day must be between 1 and 25."
     else
       let suffix = if sample then "-sample" else "" in
       let filename = Printf.sprintf "inputs/day%02d%s.in" day suffix in
-      read_input filename
+      read_file_as_string filename
 end
 
 module String = struct
-  let mk_lines str = str |> String.trim |> String.split_on_char '\n'
+  let mk_lines (s : string) : string list =
+    s |> String.trim |> String.split_on_char '\n'
 end
 
 module Int = struct
