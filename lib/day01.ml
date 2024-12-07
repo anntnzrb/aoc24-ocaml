@@ -11,15 +11,16 @@ let transpose2x2 matrix =
     difference *)
 let calc_distance xs ys = List.map2 Util.Int.distance xs ys |> Util.List.sum
 
-let part1 : string =
-  let input = Util.IO.read_input_day 1 ~sample:false in
+let parse_line line =
+  line |> String.split_on_char ' '
+  |> List.filter (( <> ) "")
+  |> List.map int_of_string
 
-  let open List in
-  let parse_line line =
-    line |> String.split_on_char ' ' |> filter (( <> ) "") |> map int_of_string
-  in
-  input |> Util.String.mk_lines |> map parse_line |> transpose2x2
-  |> map @@ sort Int.compare
+let input = Util.IO.read_input_day 1 ~sample:true
+
+let part1 : string =
+  input |> Util.String.mk_lines |> List.map parse_line |> transpose2x2
+  |> List.map @@ List.sort Int.compare
   |> ( function
   | [ xs; ys ] -> calc_distance xs ys
   | _ -> failwith "Could not calculate distance" )
