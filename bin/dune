@@ -1,4 +1,4 @@
 (executable
  (name main)
  (modules main)
- (libraries aoc24 base))
+ (libraries aoc24 base containers))
