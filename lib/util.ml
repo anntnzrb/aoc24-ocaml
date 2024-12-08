@@ -22,8 +22,8 @@ module List = struct
     type t = int list
 
     let sum xs = List.fold xs ~init:0 ~f:( + )
-    let is_increasing xs = List.is_sorted xs ~compare:Base.Int.compare
-    let is_decreasing xs = List.is_sorted xs ~compare:(Fn.flip Base.Int.compare)
+    let is_increasing xs = List.is_sorted xs ~compare:ascending
+    let is_decreasing xs = List.is_sorted xs ~compare:descending
     let is_increasing_or_decreasing xs = is_increasing xs || is_decreasing xs
   end
 end
