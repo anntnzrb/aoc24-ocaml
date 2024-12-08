@@ -4,7 +4,8 @@ module Level = struct
   type t = int
 
   let are_adjacents l1 l2 =
-    match Int.abs (l1 - l2) with 1 | 2 | 3 -> true | _ -> false
+    let diff = Util.Int.distance l1 l2 in
+    diff >= 1 && diff <= 3
 end
 
 module Report = struct
