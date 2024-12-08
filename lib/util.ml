@@ -18,13 +18,6 @@ module Int = struct
 end
 
 module List = struct
-  type 'a t = 'a list
-
-  let rec zip xs ys =
-    match (xs, ys) with
-    | x :: xs_tl, y :: ys_tl -> (x, y) :: zip xs_tl ys_tl
-    | _ -> []
-
   module Int = struct
     type t = int list
 

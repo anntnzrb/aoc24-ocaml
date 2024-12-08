@@ -12,7 +12,7 @@ module Report = struct
 
   let is_adjacent_safe report : bool =
     report
-    |> Util.List.zip (List.tl_exn report)
+    |> CCList.combine_shortest (List.tl_exn report)
     |> List.for_all ~f:(fun (x, y) -> Level.are_adjacents x y)
 
   let is_safe report : bool =
